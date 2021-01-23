@@ -161,8 +161,12 @@ class Client(
         """
 
         if config_file is None:
-            with open(str(Path.home() / ".pachyderm/config.json"), "r") as config_file:
-                j = json.load(config_file)
+            if os.path.exists("/pachctl/config.json"):
+                with open("/pachctl/config.json", "r") as config_file:
+                    j = json.load(config_file)
+            else:
+                with open(str(Path.home() / ".pachyderm/config.json"), "r") as config_file:
+                    j = json.load(config_file)
         else:
             j = json.load(config_file)
 

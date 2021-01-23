@@ -111,3 +111,10 @@ def test_groups():
         client.modify_members("foogroup", remove=["robot:root"])
         assert client.get_groups() == []
         assert client.get_users("foogroup") == []
+
+# @util.skip_if_no_enterprise()
+# @util.skip_if_below_pachyderm_version(1, 12, 0)
+def test_auth_spout_pipeline():
+    # TODO: finish test`
+    client = python_pachyderm.Client()
+    _, _, pipeline_name = util.create_test_spout(client, "test_extract_pipeline_restore")
